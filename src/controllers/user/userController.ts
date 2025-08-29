@@ -71,16 +71,22 @@ export const deleteUser = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
-	const { email, password } = req.body;
-	try {
-		const result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
-		if (result.rows.length === 0) return res.status(401).json({ error: 'Invalid credentials' });
-		const user = result.rows[0];
-		const match = await bcrypt.compare(password, user.password);
-		if (!match) return res.status(401).json({ error: 'Invalid credentials' });
-		const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, secret, { expiresIn: '1h' });
-		res.json({ token, user: new User(user) });
-	} catch (err: any) {
-		res.status(500).json({ error: err.message });
-	}
-};
+		const { email, password } = req.body;
+		if (!email || !password) {
+			return res.status(400).json({ error: 'Email and password are required.' });
+		}
+		try {
+			const result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+			if (result.rows.length === 0) return res.status(401).json({ error: 'Invalid credentials' });
+			const user = result.rows[0];
+			if (!user.password || typeof user.password !== 'string') {
+				return res.status(500).json({ error: 'User password is invalid.' });
+			}
+			const match = await bcrypt.compare(password, user.password);
+			if (!match) return res.status(401).json({ error: 'Invalid credentials' });
+			const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, secret, { expiresIn: '1h' });
+			res.json({ token, user: new User(user) });
+		} catch (err: any) {
+			res.status(500).json({ error: err.message });
+		}
+	};
