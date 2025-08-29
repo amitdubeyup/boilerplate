@@ -1,8 +1,8 @@
 
-# Boilerplate - Express + PostgreSQL API
+# Boilerplate - Express + PostgreSQL API (TypeScript)
 
 ## Overview
-A secure, scalable backend using Express and PostgreSQL. Supports flexible user and passbook management with JWT authentication and robust validation.
+A secure, scalable backend using Express, TypeScript, and PostgreSQL. Supports flexible user and passbook management with JWT authentication and robust validation.
 
 ## Features
 - User and Passbook CRUD
@@ -37,6 +37,7 @@ A secure, scalable backend using Express and PostgreSQL. Supports flexible user 
 - category VARCHAR(50)
 - created_at TIMESTAMPTZ DEFAULT NOW()
 
+
 ## Setup
 
 ### 1. Clone & Install
@@ -51,16 +52,29 @@ DATABASE_URL=your_postgres_url
 JWT_SECRET=your_jwt_secret
 ```
 
-### 3. Run Migration
-Creates all tables.
+### 3. Build TypeScript
+Transpile TypeScript source files to JavaScript:
 ```sh
-npm run migrate
+npx tsc
 ```
 
-### 4. Start Server
+### 4. Run Migration
+Creates all tables.
 ```sh
-npm start
+npx tsc && node dist/migrate.js
 ```
+
+### 5. Start Server
+Run the compiled code from the `dist` folder:
+```sh
+npx tsc && node dist/app.js
+```
+
+
+## TypeScript Notes
+- All source files are now in TypeScript (`.ts`) under `src/`.
+- Compiled output is in the `dist/` folder.
+- Update or add types/interfaces as needed for your models and controllers.
 
 ## API Endpoints
 
