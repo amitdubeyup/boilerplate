@@ -16,7 +16,7 @@ A secure, scalable backend using Express, TypeScript, and PostgreSQL. Supports f
 - id SERIAL PRIMARY KEY
 - username VARCHAR(255) NOT NULL
 - email VARCHAR(255) NOT NULL UNIQUE
-- hashed_password VARCHAR(255) NOT NULL
+- password VARCHAR(255) NOT NULL
 - is_active BOOLEAN DEFAULT true
 - role VARCHAR(50) DEFAULT 'user'
 - last_login TIMESTAMPTZ
@@ -98,7 +98,7 @@ npm start
 {
   "username": "amitdubeyup",
   "email": "amitdubey8888@gmail.com",
-  "hashed_password": "your_hash",
+  "password": "your_hash",
   "is_active": true,
   "role": "user",
   "profile_picture": "url",

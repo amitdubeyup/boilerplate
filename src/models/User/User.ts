@@ -2,7 +2,7 @@ export interface IUser {
 	id?: number;
 	username: string;
 	email: string;
-	hashed_password: string;
+	password: string;
 	is_active?: boolean;
 	role?: string;
 	last_login?: Date | null;
@@ -16,7 +16,7 @@ export class User implements IUser {
 	id?: number;
 	username: string;
 	email: string;
-	hashed_password: string;
+	password: string;
 	is_active?: boolean;
 	role?: string;
 	last_login?: Date | null;
@@ -29,7 +29,7 @@ export class User implements IUser {
 		this.id = data.id;
 		this.username = data.username;
 		this.email = data.email;
-		this.hashed_password = data.hashed_password;
+		this.password = data.password;
 		this.is_active = data.is_active;
 		this.role = data.role;
 		this.last_login = data.last_login;
