@@ -52,29 +52,34 @@ DATABASE_URL=your_postgres_url
 JWT_SECRET=your_jwt_secret
 ```
 
+
 ### 3. Build TypeScript
 Transpile TypeScript source files to JavaScript:
 ```sh
-npx tsc
+npm run build
 ```
 
 ### 4. Run Migration
 Creates all tables.
 ```sh
-npx tsc && node dist/migrate.js
+npm run migrate
 ```
 
 ### 5. Start Server
 Run the compiled code from the `dist` folder:
 ```sh
-npx tsc && node dist/app.js
+npm start
 ```
 
 
+
 ## TypeScript Notes
-- All source files are now in TypeScript (`.ts`) under `src/`.
+- All source files are in TypeScript (`.ts`) under `src/`.
 - Compiled output is in the `dist/` folder.
 - Update or add types/interfaces as needed for your models and controllers.
+- ESLint is included for code quality (`npm run lint`).
+- Basic request and error logging is enabled.
+- Environment variables are loaded from `.env`.
 
 ## API Endpoints
 
@@ -124,8 +129,20 @@ npx tsc && node dist/app.js
 - CORS
 - PostgreSQL for scalable data
 
+
 ## Testing
-Use [Postman](https://www.postman.com/) or `curl` to test endpoints. Include JWT in `Authorization` header for protected routes.
+Use [Postman](https://www.postman.com/) or `curl` to test endpoints. Include JWT in `Authorization` header for protected routes:
+```
+Authorization: Bearer <your_jwt_token>
+```
+# Boilerplate - Express + PostgreSQL API (TypeScript)
+
+## Scripts
+
+- `npm run build` — Compile TypeScript to JavaScript
+- `npm run migrate` — Run migration script to create tables
+- `npm start` — Start the server
+- `npm run lint` — Run ESLint for code quality
 
 ## Author
 [Amit Dubey](https://github.com/amitdubeyup)

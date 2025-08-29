@@ -2,10 +2,11 @@
   "name": "boilerplate",
   "version": "1.0.0",
   "description": "Secure, scalable Express + PostgreSQL API for users and passbooks with JWT authentication.",
-  "main": "src/app.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node src/app.js",
-    "migrate": "node src/migrate.js"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "migrate": "node dist/migrate.js"
   },
   "repository": {
     "type": "git",
@@ -23,19 +24,26 @@
     "scalable"
   ],
   "dependencies": {
-    "@types/jsonwebtoken": "^9.0.10",
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "express-rate-limit": "^7.0.0",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "swagger-ui-express": "^4.7.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.3.0",
     "@types/pg": "^8.15.5",
-    "typescript": "^5.9.2"
+    "@types/winston": "^2.4.4",
+    "typescript": "^5.9.2",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/parser": "^6.7.5",
+    "@typescript-eslint/eslint-plugin": "^6.7.5"
   }
 }
