@@ -1,8 +1,8 @@
 
-# Boilerplate - Express + PostgreSQL API
+# Boilerplate - Express + PostgreSQL API (TypeScript)
 
 ## Overview
-A secure, scalable backend using Express and PostgreSQL. Supports flexible user and passbook management with JWT authentication and robust validation.
+A secure, scalable backend using Express, TypeScript, and PostgreSQL. Supports flexible user and passbook management with JWT authentication and robust validation.
 
 ## Features
 - User and Passbook CRUD
@@ -16,7 +16,7 @@ A secure, scalable backend using Express and PostgreSQL. Supports flexible user 
 - id SERIAL PRIMARY KEY
 - username VARCHAR(255) NOT NULL
 - email VARCHAR(255) NOT NULL UNIQUE
-- hashed_password VARCHAR(255) NOT NULL
+- password VARCHAR(255) NOT NULL
 - is_active BOOLEAN DEFAULT true
 - role VARCHAR(50) DEFAULT 'user'
 - last_login TIMESTAMPTZ
@@ -37,6 +37,7 @@ A secure, scalable backend using Express and PostgreSQL. Supports flexible user 
 - category VARCHAR(50)
 - created_at TIMESTAMPTZ DEFAULT NOW()
 
+
 ## Setup
 
 ### 1. Clone & Install
@@ -51,16 +52,34 @@ DATABASE_URL=your_postgres_url
 JWT_SECRET=your_jwt_secret
 ```
 
-### 3. Run Migration
+
+### 3. Build TypeScript
+Transpile TypeScript source files to JavaScript:
+```sh
+npm run build
+```
+
+### 4. Run Migration
 Creates all tables.
 ```sh
 npm run migrate
 ```
 
-### 4. Start Server
+### 5. Start Server
+Run the compiled code from the `dist` folder:
 ```sh
 npm start
 ```
+
+
+
+## TypeScript Notes
+- All source files are in TypeScript (`.ts`) under `src/`.
+- Compiled output is in the `dist/` folder.
+- Update or add types/interfaces as needed for your models and controllers.
+- ESLint is included for code quality (`npm run lint`).
+- Basic request and error logging is enabled.
+- Environment variables are loaded from `.env`.
 
 ## API Endpoints
 
@@ -79,7 +98,7 @@ npm start
 {
   "username": "amitdubeyup",
   "email": "amitdubey8888@gmail.com",
-  "hashed_password": "your_hash",
+  "password": "your_hash",
   "is_active": true,
   "role": "user",
   "profile_picture": "url",
@@ -110,8 +129,20 @@ npm start
 - CORS
 - PostgreSQL for scalable data
 
+
 ## Testing
-Use [Postman](https://www.postman.com/) or `curl` to test endpoints. Include JWT in `Authorization` header for protected routes.
+Use [Postman](https://www.postman.com/) or `curl` to test endpoints. Include JWT in `Authorization` header for protected routes:
+```
+Authorization: Bearer <your_jwt_token>
+```
+# Boilerplate - Express + PostgreSQL API (TypeScript)
+
+## Scripts
+
+- `npm run build` — Compile TypeScript to JavaScript
+- `npm run migrate` — Run migration script to create tables
+- `npm start` — Start the server
+- `npm run lint` — Run ESLint for code quality
 
 ## Author
 [Amit Dubey](https://github.com/amitdubeyup)
