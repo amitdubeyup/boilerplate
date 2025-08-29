@@ -1,5 +1,5 @@
 
-# Rocket FD - Express + PostgreSQL API
+# Boilerplate - Express + PostgreSQL API
 
 ## Overview
 A secure, scalable backend using Express and PostgreSQL. Supports flexible user and passbook management with JWT authentication and robust validation.
